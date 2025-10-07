@@ -3,7 +3,8 @@ from setuptools import setup, find_packages
 setup(
     name="make_question_interface",
     version="1.0.0",
-    packages=find_packages(),
+    packages=find_packages(where="make_question_interface"),
+    package_dir={"": "make_question_interface"},
     author="Danilo Silva",
     author_email="contact@danilocgsilva.me",
     description="Drives client and server code to implement a functionality that makes question to a IA",
