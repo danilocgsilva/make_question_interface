@@ -1,0 +1,6 @@
+make_question_interface/make_question_interface.egg-info/*
+make_question_interface.egg-info/*
+dist/*
+build/*
+make_question_interface/__pycache__/*
+make_question_interface/Exceptions/__pycache__/*
