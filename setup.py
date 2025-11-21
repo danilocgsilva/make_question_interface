@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="make_question_interface",
-    version="1.2.0",
+    version="1.3.0",
     packages=find_packages(
         include=["make_question_interface", "make_question_interface.*"]
     ),
