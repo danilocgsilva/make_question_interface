@@ -10,6 +10,7 @@ class Results:
     implementation_name: str
     model_name: str
     parameters: dict
+    response_content: str
     
     def __init__(
         self, 
@@ -19,6 +20,7 @@ class Results:
         implementation_name: str,
         model_name: str,
         parameters: dict = None,
+        response_content: str = ""
     ):
         self.raw_answer = raw_answer
         self.timestamp_start = timestamp_start
@@ -27,3 +29,4 @@ class Results:
         self.model_name = model_name
         self.parameters = parameters if parameters is not None else {}
         self.raw_answer_serialized = base64.b64encode(pickle.dumps(raw_answer)).decode('utf-8')
+        self.response_content = response_content
