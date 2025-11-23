@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 import pickle
 import base64
+import json
 
 @dataclass
 class Results:
@@ -30,3 +31,21 @@ class Results:
         self.parameters = parameters if parameters is not None else {}
         self.raw_answer_serialized = base64.b64encode(pickle.dumps(raw_answer)).decode('utf-8')
         self.response_content = response_content
+        
+    def to_dict(self) -> dict:
+        return {
+            "raw_answer_serialized": self.raw_answer_serialized,
+            "timestamp_start": self.timestamp_start,
+            "timestamp_end": self.timestamp_end,
+            "implementation_name": self.implementation_name,
+            "model_name": self.model_name,
+            "parameters": self.parameters,
+            "response_content": self.response_content
+        }
+        
+    def to_json(self, formatted: bool = False) -> str:
+        return json.dumps(self.to_dict(), indent=4 if formatted else None)
+    
+    def get_raw_answer(self):
+        return pickle.loads(base64.b64decode(self.raw_answer_serialized.encode('utf-8')))
+
