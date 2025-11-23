@@ -10,3 +10,6 @@ class IMakeQuestion(abc.ABC):
     
     def get_results(self) -> Results:
         pass
+    
+    def get_implementation_alias(self) -> str:
+        pass
