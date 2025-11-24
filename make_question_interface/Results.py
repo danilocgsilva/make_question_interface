@@ -27,7 +27,7 @@ class Results:
         raw_answer_dict: dict = None
     ):
         self.raw_answer = raw_answer
-        self.raw_answer_serialized = base64.b64encode(pickle.dumps(raw_answer)).decode('utf-8')
+        self.raw_answer_serialized = self.serialize(raw_answer)
         self.raw_answer_dict = raw_answer_dict if raw_answer_dict is not None else {}
         self.timestamp_start = timestamp_start
         self.timestamp_end = timestamp_end
@@ -53,4 +53,12 @@ class Results:
     
     def get_raw_answer(self):
         return pickle.loads(base64.b64decode(self.raw_answer_serialized.encode('utf-8')))
+    
+    @staticmethod
+    def serialize(content: any) -> str:
+        return base64.b64encode(pickle.dumps(content)).decode('utf-8')
+    
+    @staticmethod
+    def deserialize(serialized_content: str) -> any:
+        return pickle.loads(base64.b64decode(serialized_content.encode('utf-8')))
 
