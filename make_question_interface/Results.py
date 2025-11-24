@@ -5,7 +5,9 @@ import json
 
 @dataclass
 class Results:
+    raw_answer: any
     raw_answer_serialized: str
+    raw_answer_dict: dict
     timestamp_start: float
     timestamp_end: float
     implementation_name: str
@@ -21,15 +23,17 @@ class Results:
         implementation_name: str,
         model_name: str,
         parameters: dict = None,
-        response_content: str = ""
+        response_content: str = "",
+        raw_answer_dict: dict = None
     ):
         self.raw_answer = raw_answer
+        self.raw_answer_serialized = base64.b64encode(pickle.dumps(raw_answer)).decode('utf-8')
+        self.raw_answer_dict = raw_answer_dict if raw_answer_dict is not None else {}
         self.timestamp_start = timestamp_start
         self.timestamp_end = timestamp_end
         self.implementation_name = implementation_name
         self.model_name = model_name
         self.parameters = parameters if parameters is not None else {}
-        self.raw_answer_serialized = base64.b64encode(pickle.dumps(raw_answer)).decode('utf-8')
         self.response_content = response_content
         
     def to_dict(self) -> dict:
