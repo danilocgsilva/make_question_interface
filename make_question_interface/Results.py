@@ -44,7 +44,8 @@ class Results:
             "implementation_name": self.implementation_name,
             "model_name": self.model_name,
             "parameters": self.parameters,
-            "response_content": self.response_content
+            "response_content": self.response_content,
+            "raw_answer_dict": self.raw_answer_dict
         }
         
     def to_json(self, formatted: bool = False) -> str:
